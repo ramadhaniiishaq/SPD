@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="row w-100">
+            <div class="col-lg-3">
+                <div class="header d-flex justify-content-between align-items-center">
+                    <div class="title">SPD</div>
+                </div>
+            </div>
+            <div class="col-lg-9" style="border-bottom: 2px solid #000000;">
+                <div class="header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2 auto">
+                        <span class="dashboard-text"
+                            style="margin-right:60px; font-size:xx-large; font-weight:bolder;">Beranda</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 ms-auto">
+                        <span class="dashboard-text"><i class="bi bi-bell"> </i>Nama</span>
+                        <img src="{{ url_for('static', filename='images/elaina.jpg') }}" alt="Profile"
+                            class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="pt-5">
+        <div class="row">
+            <div class="col-lg-3">
+                <ul class="sidebar">
+                    <a href="#" style="text-decoration: none;">
+                        <div class="dusun">
+                            <div class="dusun-body">
+                                <h5 class="dusun-title">Tambah Dusun</h5>
+                            </div>
+                        </div>
+                    </a>
+                    <li class="nav-item">
+            <li>
+                <a class="sidebar-btn" href="{{url_for('dashboard_desa')}}"><i class="bi bi-house-door"> </i>
+                    Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a class="sidebar-btn " href="{{ url_for('data') }}"><i class="bi bi-folder"> </i>Data</a>
+            </li>
+            <li class="nav-item">
+                <a class="sidebar-btn " href="#"><i class="bi bi-people"> </i>Penduduk</a>
+            </li>
+            <li>
+                <a class="sidebar-btn " href="#"><i class="bi bi-clock"> </i>Catatan Peristiwa</a>
+            </li>
+            </li>
+            <hr>
+            </ul>
+            </div>
+            
+        
+        
+        <div class="col-lg-9">
+            <!-- isi -->
+            {% block content %}
+
+            {% endblock %}
+        </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer text-body-secondary">
+            by admin
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+
+</body>
+
+</html>

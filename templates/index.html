@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Sidebar Modern - Bootstrap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+    :root{
+    --primary-color: #018790;
+    --secondary-color: #00B7B5;
+    --thirty-color: #D9D9D9;
+    --fourty-color: #005461;
+    --background-color: #ffffff;
+    --text-color: #ffffff;
+    --navbar-color: #ffffff;
+}
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #f0f2f5;
+        }
+
+        .header {
+            background: transparent;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Footer simple */
+        .footer {
+            background: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* Layout wrapper */
+        .wrapper {
+            display: flex;
+            flex: 1;
+        }
+
+        /* Sidebar desktop - modern & simple */
+        .sidebar {
+            width: 260px;
+            background: var(--primary-color);
+            padding: 4.5rem 1rem;
+            border-right: 1px solid #e9ecef;
+            min-height: calc(100vh - 130px);
+            border-radius: 0px 70px 0px 0px;
+            margin-top: 40px;
+        }
+
+        .sidebar .nav-link {
+            color: var(--text-color);
+            padding: 0.7rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+        }
+
+        .sidebar .nav-link i {
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .sidebar .nav-link:hover {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .sidebar .nav-link.active {
+            background: #4f46e5;
+            color: white;
+        }
+
+        /* Content area */
+        .content {
+            flex: 1;
+            padding: 1.5rem;
+        }
+
+        /* Card modern */
+        .card-modern {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .card-modern:hover {
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile: sembunyikan sidebar desktop */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .btn-mobile-menu {
+                display: flex !important;
+            }
+            .content {
+                padding: 1rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .btn-mobile-menu {
+                display: none !important;
+            }
+        }
+
+        /* Offcanvas styling */
+        .offcanvas-menu {
+            width: 260px;
+        }
+
+        .offcanvas-menu .nav-link {
+            padding: 0.7rem 1rem;
+            border-radius: 12px;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .offcanvas-menu .nav-link:hover {
+            background: #eef2ff;
+        }
+
+        .offcanvas-menu .nav-link.active {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .btn-mobile-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #4a5568;
+        }
+        .h1{
+            color: var(--primary-color);
+            font-weight: bolder;
+
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Sederhana -->
+    <header class="header">
+        <div class=" justify-content-between align-items-center">
+            <div class="align-items-center gap-3">
+                <button class="btn-mobile-menu" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                    <i class="bi bi-list"></i>
+                </button>
+                <h1 class="h1 col-lg-8" style="font-size: 50px;">
+                    SPD
+                </h1>
+                    <div class="dropup" style="text-align: end; margin-bottom:40px">
+                        <i class="bi bi-bell">  </i>
+                        <a href="#" class="text-dark text-decoration-none" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle fs-5"></i>
+                        </a>
+                    </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <!-- Sidebar Kiri (Desktop) -->
+        <aside class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link active" href="#">
+                    <i class="bi bi-house-door"></i>
+                    <span>Beranda</span>
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-people"></i>
+                    <span>Pengguna</span>
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-envelope"></i>
+                    <span>Pesan</span>
+                    <span class="badge bg-danger rounded-pill ms-auto">3</span>
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-gear"></i>
+                    <span>Pengaturan</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Content Tengah -->
+        <main class="content">
+            <!-- Welcome Section -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="h4 fw-semibold mb-1">Halo, Admin!</h2>
+                    <p class="text-muted small mb-0">Selamat datang kembali</p>
+                </div>
+                <span class="text-muted small">
+                    <i class="bi bi-calendar3"></i> 
+                    <script>document.write(new Date().toLocaleDateString('id-ID'));</script>
+                </span>
+            </div>
+
+            <!-- Stat Cards -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card-modern card p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-muted small">Pengunjung</span>
+                                <h3 class="fw-bold mb-0">1,234</h3>
+                                <small class="text-success">↑ 12%</small>
+                            </div>
+                            <i class="bi bi-people fs-1 text-primary opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-modern card p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-muted small">Pendapatan</span>
+                                <h3 class="fw-bold mb-0">Rp 45Jt</h3>
+                                <small class="text-success">↑ 8%</small>
+                            </div>
+                            <i class="bi bi-graph-up fs-1 text-success opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-modern card p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-muted small">Order</span>
+                                <h3 class="fw-bold mb-0">89</h3>
+                                <small class="text-warning">Perlu diproses</small>
+                            </div>
+                            <i class="bi bi-cart fs-1 text-warning opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card-modern card">
+                <div class="card-header bg-transparent border-0 pt-3 pb-0">
+                    <h6 class="fw-semibold mb-0">Aktivitas Terbaru</h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <i class="bi bi-person-plus text-success fs-5"></i>
+                        <div class="flex-grow-1">
+                            <span class="small">User baru mendaftar</span>
+                            <div class="text-muted small">5 menit lalu</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <i class="bi bi-cart-check text-primary fs-5"></i>
+                        <div class="flex-grow-1">
+                            <span class="small">Order #001 selesai</span>
+                            <div class="text-muted small">1 jam lalu</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="bi bi-chat-dots text-info fs-5"></i>
+                        <div class="flex-grow-1">
+                            <span class="small">Komentar baru</span>
+                            <div class="text-muted small">3 jam lalu</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer Sederhana -->
+    <footer class="footer">
+        <span>© 2026 MyApp · Made with <i class="bi bi-heart-fill text-danger"></i></span>
+    </footer>
+
+    <!-- Offcanvas Mobile -->
+    <div class="offcanvas offcanvas-start offcanvas-menu" tabindex="-1" id="mobileMenu">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-semibold">
+                <i class="bi bi-grid-1x2-fill text-primary me-2"></i>MyApp
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <nav class="nav flex-column">
+                <a class="nav-link active" href="#">
+                    <i class="bi bi-house-door"></i> Beranda
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-bar-chart"></i> Dashboard
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-people"></i> Pengguna
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-envelope"></i> Pesan
+                    <span class="badge bg-danger ms-auto">3</span>
+                </a>
+                <a class="nav-link" href="#">
+                    <i class="bi bi-gear"></i> Pengaturan
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
