@@ -1,13 +1,14 @@
 {% extends 'Dashboard_desa.html'%}
 {% block content %}
-            <!-- Data -->
+
+            <!-- Penduduk -->
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <h2 class="h4 fw-bold mb-1">Data</h2>
+                    <h2 class="h4 fw-bold mb-1">Penduduk</h2>
                 </div>
             </div>
             <div class="g-3 mb-4">
-                <div class="col-md-4">
+                <div class="col-md-">
                     <div class="card-modern card p-5">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
@@ -21,16 +22,8 @@
                 </div>
             </div>
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h2 class="h4 fw-bold mb-0">Kepala Dusun</h2>
+                <h2 class="h4 fw-bold mb-0">Penduduk</h2>
                 <div class="d-flex align-items-center gap-4">
-                    <span class="fw-semibold">tambah kepala dusun :</span>
-                    <a href="#" class="text-decoration-none text-muted small d-flex align-items-center gap-1 "
-                        style="font-weight: bol;">
-                        <button class="btn text-white d-flex align-items-center gap-2"
-                        style="background-color: var(--primary-color); border-radius: 8px; padding: 5px 15px;">
-                        <i class="bi bi-plus-lg"></i> Tambah
-                    </button>
-                </a>
                     <div class="d-flex align-items-center position-relative">
                         <i class="bi bi-search position-absolute" style="left: 10px; color: #6c757d;"></i>
                         <input type="text" class="form-control ps-5" placeholder="Cari nama..."
@@ -39,7 +32,7 @@
 
                 </div>
             </div>
-            <div class="card-modern card mb-3">
+            <div class="card-modern card mb-4">
                 <div class="card-header bg-transparent border-0 pt-3 pb-0">
                     <h6 class="fw-semibold mb-0">Aktivitas Terbaru</h6>
                 </div>
@@ -51,6 +44,7 @@
                                 <th scope="col">First</th>
                                 <th scope="col">Last</th>
                                 <th scope="col">Handle</th>
+                                <th scope="col">Aksi </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,9 +53,10 @@
                                 <td>Mark</td>
                                 <td>Otto</td>
                                 <td>@mdo</td>
+                                <td><button type="btn" class="btn btn-danger">hapus</button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-{% endblock %}
+            {% endblock %}

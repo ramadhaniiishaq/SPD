@@ -1,0 +1,113 @@
+        :root {
+            --teal-color: #008a8a;
+            --bg-form: #f4fbfb;
+            --primary-color: #018790;
+            --secondary-color: #00B7B5;
+            --thirty-color: #D9D9D9;
+            --fourty-color: #005461;
+            --text-color: #ffffff;
+            --navbar-color: #ffffff;
+            
+        }
+        @keyframes adalah{
+            from{
+                opacity: 0;
+                transform:scale(30px);
+            }
+            to{
+                opacity: 1;
+                transform: scale(0px);
+            }
+        }
+        body {
+            background-color: color-mix(in srgb, #018790 30%, #00B7B5 70%); /* Background gelap seperti di frame Figma */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 100%;
+            animation: adalah 2s ease-out forwards;
+        }
+
+        /* Bagian Kiri */
+        .form-section {
+            background-color: white;
+            padding: 3rem !important;
+        }
+
+        .login-header {
+            color: var(--teal-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .login-header i {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            padding: 0.4rem 0.75rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--teal-color);
+            box-shadow: 0 0 0 0.25rem rgba(0, 138, 138, 0.1);
+        }
+
+        .btn-login {
+            background-color: var(--teal-color);
+            color: white;
+            border-radius: 10px;
+            padding: 8px 40px;
+            font-weight: bold;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #006b6b;
+            color: white;
+        }
+
+        /* Bagian Kanan (Teal Section) */
+        .teal-section {
+            background-color: var(--teal-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 3rem;
+            /* Membuat potongan miring murni dengan CSS */
+            clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 60%);
+        }
+
+        .teal-section h1 {
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-left: 15%; /* Memberi jarak dari area miring */
+        }
+
+        /* Garis pemisah tipis */
+        .divider {
+            width: 80%;
+            height: 1px;
+            background-color: #dee2e6;
+            margin: 1.5rem auto;
+        }

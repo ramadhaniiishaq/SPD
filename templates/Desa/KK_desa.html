@@ -1,0 +1,46 @@
+{% extends 'Dashboard_desa.html' %}
+{% block content %}
+            <!--Data KK-->
+            <h2 class="h4 fw-bold mb-3" style="color: var(--primary-color);">Id KK</h2>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <h3 class="h5 fw-bold mb-3">Data KK</h3>
+                <div class="d-flex align-items-center gap-4">
+                    <div class="d-flex align-items-center position-relative">
+                        <i class="bi bi-search position-absolute" style="left: 10px; color: #6c757d;"></i>
+                        <input type="text" class="form-control ps-5" placeholder="Cari nama..."
+                            style="width: 200px; border-radius: 8px; height: 38px;">
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-modern card mb-4">
+                <div class="card-header bg-transparent border-0 pt-3 pb-0">
+                    <h6 class="fw-semibold mb-0">Aktivitas Terbaru</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                                <th scope="col">Aksi </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>
+                                <a type="btn" class="btn btn-detail" href="{{url_for('data_diri')}}">lihat</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+{% endblock %}
