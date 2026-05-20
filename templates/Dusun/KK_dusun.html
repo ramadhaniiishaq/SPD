@@ -1,44 +1,84 @@
 {% extends 'Dashboard_dusun.html' %}
 {% block content %}
-            <!--Data KK-->
-            <h2 class="h4 fw-bold mb-3" style="color: var(--primary-color);">Id KK</h2>
+            <h2 class="h4 fw-bold mb-3" style="color: var(--primary-color);">KK</h2>
+            <div class="g-3 mb-4">
+            <div class="col-md-">
+            <div class="card-modern card p-5">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="text-muted small">Semua kk</span>
+                    <h3 class="fw-bold mb-0">{{ ttl_kk }}</h3>
+                </div>
+                <i class="bi bi-people fs-1 text-primary opacity-50"></i>
+            </div>
+            </div>
+            </div>
+            </div>
             <div class="d-flex align-items-center justify-content-between mb-2">
                 <h3 class="h5 fw-bold mb-3">Data KK</h3>
                 <div class="d-flex align-items-center gap-4">
                     <div class="d-flex align-items-center position-relative">
                         <i class="bi bi-search position-absolute" style="left: 10px; color: #6c757d;"></i>
-                        <input type="text" class="form-control ps-5" placeholder="Cari nama..."
+                        <input type="text" class="form-control ps-5" onkeyup="fungsicari()" id="cari" placeholder="Cari nama..."
                             style="width: 200px; border-radius: 8px; height: 38px;">
                     </div>
 
                 </div>
             </div>
+            <a href="{{url_for('tambahpenduduk', )}}" class="btn btn-outline-primary mb-3"><i class="bi bi-plus-lg">  </i>tambah penduduk</a>
             <div class="card-modern card mb-4">
-                <div class="card-header bg-transparent border-0 pt-3 pb-0">
-                    <h6 class="fw-semibold mb-0">Aktivitas Terbaru</h6>
-                </div>
-                <div class="card-body">
-                    <table class="table">
+                <div class="card-body table-responsive">
+                    <table class="table table-striped justify-content-center align-items-center mb-0" id="tabelkk">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Aksi </th>
+                                <th >No</th>
+                                <th >kk</th>
+                                <th >Nama</th>
+                                <th >Alamat</th>
+                                <th >Dusun</th>
+                                <th >Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for kk in kk %}
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td><a type="btn" class="btn btn-detail" href="{{url_for('data_diri_dusun')}}">lihat</a></td>
+                                <th>{{ loop.index }}</th>
+                                <td>{{ kk.no_kk }}</td>
+                                <td>{{ kk.kepala_keluarga }}</td>
+                                <td>{{ kk.alamat }}</td>
+                                <td>{{ kk.nama }}</td>
+                                <td><a type="btn" class="btn btn-detail" href="{{url_for('penduduk_dusun', id_kk=kk.id)}}">lihat</a>
+                                <a type="btn" class="btn btn-outline-danger" style="width: 100px; box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);" href="{{url_for('hapus_kk', id_kk=kk.id)}}">hapus</a></td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
 
+{% endblock %}
+{% block js %}
+<script>
+function fungsicari() {
+    let input = document.getElementById("cari");
+    let filter = input.value.toUpperCase();
+    let table = document.getElementById("tabelkk");
+    let tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+
+        let td = tr[i].getElementsByTagName("td")[1];
+
+        if (td) {
+            let txtValue = td.textContent || td.innerText;
+
+            if (txtValue.toUpperCase().includes(filter)) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+</script> 
 {% endblock %}

@@ -31,8 +31,6 @@
         .h1 {
             margin-left: 20%;
         }
-
-        /* Footer simple */
         .footer {
             background: white;
             padding: 1rem;
@@ -42,13 +40,11 @@
             border-top: 1px solid #e9ecef;
         }
 
-        /* Layout wrapper */
         .wrapper {
             display: flex;
             flex: 1;
         }
 
-        /* Sidebar desktop - modern & simple */
         .sidebar {
             width: 350px;
             background: var(--primary-color);
@@ -116,7 +112,6 @@
 
         }
 
-        /* Content area */
         .content {
             flex: 1;
             padding: 1.5rem;
@@ -159,7 +154,7 @@
         }
 
         /* Mobile: sembunyikan sidebar desktop */
-        @media (max-width: 800px) {
+        @media (max-width: 480px) {
             .sidebar {
                 display: none;
             }
@@ -173,7 +168,7 @@
                 margin-left: 0;
                 width: 100;
                 margin-bottom: 1px;
-                margin-top: calc(100% - 390px);
+                margin-top: calc(100% - 180px);
             }
 
             .footer {
@@ -191,7 +186,7 @@
             }
         }
 
-        @media (min-width: 769px) {
+        @media (min-width: 450px) {
             .btn-mobile-menu {
                 display: none !important;
             }
@@ -199,8 +194,11 @@
 
         /* Offcanvas styling */
         .offcanvas-menu {
-            width: 260px;
+            width: 150px;
             padding: 3px;
+            background-color: var(--navbar-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .offcanvas-menu .nav-link {
@@ -257,6 +255,7 @@
             box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
             width: 15vh;
             margin-right: 20px;
+            color: var(--primary-color);
 
         }
         .btn-kirim:hover{
@@ -273,6 +272,7 @@
             border-radius: 10px;
             box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
             width: 10vh;
+            color: var(--primary-color);
         }
         .btn-detail:hover{
             background-color: var(--primary-color);
@@ -281,4 +281,26 @@
             transform: translatey(-3px);
             transition: all 0.5s;
             color: var(--text-color);
+            
+        }
+        .btn-logout{
+            background-color:inherit;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            width: 80%;
+        }
+        .btn-logout:hover{
+            transform:translateY(-3px);
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+        btn-outline-danger:hover{
+            background-color: red;
+            border: 2px solid rgb(22, 22, 22);
+            box-shadow: 2px 2px 10px rgb(0, 0, 0, 0.2);
+            transform: translatey(-3px);
+            transition: all 0.5s;
+            color: var(--text-color);
+            
         }

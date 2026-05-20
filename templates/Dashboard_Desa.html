@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Sidebar Modern - Bootstrap</title>
+    <title>SPD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
-
-    <!-- Header Sederhana -->
     <header class="header">
         <div class=" justify-content-between align-items-center">
             <div class="align-items-center gap-3">
@@ -33,7 +32,7 @@
                                 <i class="bi bi-person-circle fs-5"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{url_for('login')}}">Logout</a></li>
+                                <li><a class="dropdown-item btn btn-logout justify-content-center align-item-center" href="{{url_for('logout')}}">Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -61,9 +60,9 @@
                     <i class="bi bi-folder"></i>
                     <span>Data</span>
                 </a>
-                <a class="nav-link mb-3" style="animation: slideright 1.5s ease-in;" href="{{ url_for('penduduk') }}">
+                <a class="nav-link mb-3" style="animation: slideright 1.5s ease-in;" href="{{ url_for('KK_desa') }}">
                     <i class="bi bi-people"></i>
-                    <span>Penduduk</span>
+                    <span>KK</span>
                 </a>
                 <a class="nav-link mb-3" style="animation: slideright 2s ease-in;" href="{{ url_for('catatan_peristiwa') }}">
                     <i class="bi bi-clock-history"> </i>
@@ -80,7 +79,7 @@
 
     <footer class="footer col-lg-10 justify-content-center"
         style="background-color: var(--primary-color); color:white; width:77%">
-        <h5>© 2026 MyApp · Made with <i class="bi bi-heart-fill text-danger"></i></h5>
+        <h5>© 2026 MyApp · Made with kelompok 6  <i class="bi bi-people-fill"></i></h5>
     </footer>
 
     <div class="offcanvas offcanvas-start offcanvas-menu" tabindex="-1" id="mobileMenu">
@@ -91,8 +90,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
-            <nav class="nav flex-column">
-                <a class="nav-link active mb-3" href="{{ url_for('Beranda_desa')}}">
+            <nav class="nav flex-column mb-3">
+                <a class="nav-link mb-3" href="{{ url_for('Beranda_desa')}}">
                     <i class="bi bi-house-door"></i>
                     <span>Beranda</span>
                 </a>
@@ -100,7 +99,7 @@
                     <i class="bi bi-folder"></i>
                     <span>Data</span>
                 </a>
-                <a class="nav-link mb-3" href="{{ url_for('penduduk')}}">
+                <a class="nav-link mb-3" href="{{ url_for('Data')}}">
                     <i class="bi bi-people"></i>
                     <span>Penduduk</span>
                 </a>
@@ -109,9 +108,14 @@
                     <span>Catatan Peristiwa</span>
                 </a>
             </nav>
+            <a href="{{url_for('tambah_dusun')}}" style="width: 30px; background-color:var(--primary-color);color:var(--text-color);border:2px solid black;text-decoration:none; border-radius:10px; padding:10px; margin-left:5px;" class="justify-content-center align-item-center">
+                <i class="bi bi-house-door"></i>  tambah dusun
+            </a>
         </div>
     </div>
-
+    {% block js %}
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

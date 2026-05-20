@@ -86,7 +86,6 @@
             color: white;
         }
 
-        /* Bagian Kanan (Teal Section) */
         .teal-section {
             background-color: var(--teal-color);
             color: white;
@@ -107,7 +106,6 @@
             transform: scaleX(-1);
         }
 
-        /* Garis pemisah tipis */
         .divider {
             width: 80%;
             height: 1px;

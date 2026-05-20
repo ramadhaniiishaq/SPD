@@ -1,6 +1,5 @@
 {% extends 'Dashboard_desa.html'%}
 {% block content %}
-            <!-- Data -->
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
                     <h2 class="h4 fw-bold mb-1">Data</h2>
@@ -11,9 +10,8 @@
                     <div class="card-modern card p-5">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <span class="text-muted small">Pengunjung</span>
-                                <h3 class="fw-bold mb-0">1,234</h3>
-                                <small class="text-success">↑ 12%</small>
+                                <span class="text-muted small">Dusun</span>
+                                <h3 class="fw-bold mb-0">{{jd}}</h3>
                             </div>
                             <i class="bi bi-people fs-1 text-primary opacity-50"></i>
                         </div>
@@ -24,7 +22,7 @@
                 <h2 class="h4 fw-bold mb-0">Kepala Dusun</h2>
                 <div class="d-flex align-items-center gap-4">
                     <span class="fw-semibold">tambah kepala dusun :</span>
-                    <a href="#" class="text-decoration-none text-muted small d-flex align-items-center gap-1 "
+                    <a href="{{url_for('tambah_dusun')}}" class="text-decoration-none text-muted small d-flex align-items-center gap-1 "
                         style="font-weight: bol;">
                         <button class="btn text-white d-flex align-items-center gap-2"
                         style="background-color: var(--primary-color); border-radius: 8px; padding: 5px 15px;">
@@ -33,35 +31,62 @@
                 </a>
                     <div class="d-flex align-items-center position-relative">
                         <i class="bi bi-search position-absolute" style="left: 10px; color: #6c757d;"></i>
-                        <input type="text" class="form-control ps-5" placeholder="Cari nama..."
+                        <input type="text" class="form-control ps-5" onkeyup="fungsicari()" id="cari" placeholder="Cari nama..."
                             style="width: 200px; border-radius: 8px; height: 38px;">
                     </div>
 
                 </div>
             </div>
             <div class="card-modern card mb-3">
-                <div class="card-header bg-transparent border-0 pt-3 pb-0">
-                    <h6 class="fw-semibold mb-0">Aktivitas Terbaru</h6>
-                </div>
-                <div class="card-body">
-                    <table class="table">
+                <div class="card-body table-responsive">
+                    <table class="table table_striped" id="tabeldusun">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th >No</th>
+                                <th >Nama</th>
+                                <th >Dusun</th>
+                                <th >Username</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for d in dusun %}
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <th>{{loop.index}}</th>
+                                <td>{{d.kepala_dusun}}</td>
+                                <td>{{d.nama}}</td>
+                                <td>{{d.username}}</td>
+                                <td><a type="button" class="btn btn-warning" href="{{url_for('edit_dusun', id_dusun=d.id)}}">edit</a>
+                                <a type="button" href="{{url_for('hapus_dusun', id_dusun=d.id)}}" class="btn btn-danger">hapus</a></td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
+{% endblock %}
+{% block js %}
+<script>
+function fungsicari() {
+    let input = document.getElementById("cari");
+    let filter = input.value.toUpperCase();
+    let table = document.getElementById("tabeldusun");
+    let tr = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < tr.length; i++) {
+
+        let td = tr[i].getElementsByTagName("td")[0];
+
+        if (td) {
+            let txtValue = td.textContent || td.innerText;
+
+            if (txtValue.toUpperCase().includes(filter)) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+</script> 
 {% endblock %}

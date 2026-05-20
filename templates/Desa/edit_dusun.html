@@ -1,0 +1,48 @@
+{% extends 'Dashboard_desa.html' %}
+
+{% block content %}
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <h2 class="h4 fw-bold mb-0" style="color: var(--primary-color);">Edit Dusun</h2>
+    <div class="d-flex align-items-center gap-4">
+        <a href="{{url_for('Data')}}" class="btn btn-secondary">Kembali</a>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="card-modern card mb-4" style="padding: 20px; width:80vh;">
+        <div class="card-body" style="width:100%">
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="Nama" class="form-label">Nama Kepala Dusun</label>
+                    <input type="text" class="form-control" id="Nama" name="nama" 
+                           placeholder="Masukkan nama" value="{{ d.kepala_dusun }}" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" 
+                           placeholder="Masukkan username" value="{{ d.username }}" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="Nama dusun" class="form-label">Nama Dusun</label>
+                    <input type="text" class="form-control" id="Nama dusun" name="nama_dusun" 
+                           placeholder="Masukkan Nama Dusun" value="{{ d.nama }}" required>
+                </div>
+                
+                <div class="mb-3"> 
+                    <label for="Password" class="form-label">Password Baru (Kosongkan jika tidak diubah)</label>
+                    <input type="password" class="form-control" id="Password" name="password" 
+                           placeholder="Masukkan password baru" required>
+                    <small class="text-muted">Biarkan kosong jika tidak ingin mengubah password</small>
+                </div>
+                
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    <a href="{{url_for('Data')}}" class="btn btn-secondary">Batal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

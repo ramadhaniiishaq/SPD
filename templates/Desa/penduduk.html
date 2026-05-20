@@ -1,26 +1,12 @@
 {% extends 'Dashboard_desa.html'%}
 {% block content %}
 
-            <!-- Penduduk -->
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
-                    <h2 class="h4 fw-bold mb-1">Penduduk</h2>
+                    <h2 class="h4 fw-bold mb-1"></h2>
                 </div>
             </div>
-            <div class="g-3 mb-4">
-                <div class="col-md-">
-                    <div class="card-modern card p-5">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <span class="text-muted small">Pengunjung</span>
-                                <h3 class="fw-bold mb-0">1,234</h3>
-                                <small class="text-success">↑ 12%</small>
-                            </div>
-                            <i class="bi bi-people fs-1 text-primary opacity-50"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h2 class="h4 fw-bold mb-0">Penduduk</h2>
                 <div class="d-flex align-items-center gap-4">
@@ -40,21 +26,33 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">NO</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Nik</th>
+                                <th scope="col">Jenis Kelamin</th>
                                 <th scope="col">Aksi </th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for penduduk in penduduk %}
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td><button type="btn" class="btn btn-danger">hapus</button></td>
+                                <th scope="row">{{ loop.index }}</th>
+                                <td>{{ penduduk.nama }}</td>
+                                <td>{{ penduduk.nik }}</td>
+                                <td>{% if penduduk.jk == 'Perempuan' %}
+                                    <i class="bi bi-gender-female" style="color: pink;"> </i>perempuan
+                                    {% elif penduduk.jk == 'Laki-laki' %}
+                                    <i class="bi bi-gender-male" style="color: blue;"> </i>laki-laki
+                                    {% else %}
+                                    tidak diketahui
+                                    {% endif %}
+                                </td>
+                                <td>
+                                <a type="btn" class="btn btn-detail" href="{{ url_for('data_diri', id_penduduk=penduduk.id_penduduk) }}">detail</a>
+                                </td>
+                            </td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

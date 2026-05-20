@@ -1,0 +1,98 @@
+{% extends 'Dashboard_dusun.html' %}
+{% block content %}
+
+        <div class="d-flex align-items-center justify-content-between mb-4" style="margin-top: 20px;">
+        <h2 class="h4 fw-bold mb-0" style="color: var(--primary-color);">Tambah penduduk <i class="bi bi-people"></i></h2>
+        <div class="d-flex align-items-center gap-4">
+        </div>
+    </div>
+    <div class="justify-content-start">
+        {% if error %}
+        <div class="alert alert-danger" role="alert" id="errorAlert">
+            {{error}}
+        </div>
+        {% endif %}
+        <form style="color: var(--primary-color); font-size:large; font-weight:bold" method="POST" action="#">
+        <div class="card-modern card mb-4"style="padding: 40px; width:100%;">
+        <div class="card-body" style="width:100%" >
+        <input type="hidden" name="id_kk" value="{{ id_kk }}">
+        <div class="row">
+        <div class="mb-3 col">
+        <label for="nama" class="form-label">Nama</label>
+        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" >
+        </div>
+        <div class="mb-3 col">
+        <label for="Nik" class="form-label">Nik</label>
+        <input type="text" class="form-control" id="Nik" name="Nik" placeholder="Masukkan Nik" >
+        </div>
+        </div>
+        <div class="mb-3">
+        <label for="Jenis kelamin" class="form-label">Jenis kelamin</label>
+            <select class="form-select" aria-label="Default select example" id="Jenis kelamin" name="Jenis_kelamin">
+            <option selected>jenis kelamin</option>
+            <option value="laki-laki">Laki laki</option>
+            <option value="perempuan">Perempuan</option>
+            </select>
+        </div>
+        <div class="row">
+            <div class="mb-3 col">
+                <label for="tempat_lahir" class="form-label">Tempat lahir</label>
+                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" placeholder="Masukkan tempat lahir" required >
+            </div>
+            <div class="mb-3 col">
+                <label for="tanggal" class="form-label">Tanggal lahir</label>
+                <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Masukkan tanggal lahir" required >
+            </div>
+        </div>
+            <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+                <select class="form-select" aria-label="Default select example" id="status" name="status" required>
+                <option selected>status</option>
+                <option value="menikah">Menikah</option>
+                <option value="tidak menikah">Tidak menikah</option>
+                </select>
+            </div>
+            <div class="mb-3">
+            <label for="kk" class="form-label">no kk</label>
+                <select class="form-select" aria-label="Default select example" id="kk" name="kk" required>
+                    <option selected>no kk</option>
+                    {% for r in result %}
+                <option value="{{r.id}}">{{r.no_kk}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+            <label for="agama" class="form-label">agama</label>
+                <select class="form-select" aria-label="Default select example" id="agama" name="agama" required>
+                <option selected>agama</option>
+                <option value="islam">islam</option>
+                <option value="kristen">kristen</option>
+                <option value="buddha">buddha</option>
+                <option value="hindu">hindu</option>
+                <option value="konghucu">konghucu</option>
+                </select>
+            </div>
+                <button type="submit" class="btn btn-kirim"><i class="bi bi-download"></i>  Kirim</button>
+    </form>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        {% endblock %}
+        {% block js %}
+        <script>
+        setTimeout(function() {
+        var errorAlert = document.getElementById('errorAlert');
+        if (errorAlert) {
+
+            errorAlert.classList.remove('show');
+            errorAlert.classList.add('fade');
+            setTimeout(function() {
+                errorAlert.remove();
+            }, 500);
+        }
+    }, 3000);
+        </script>
+        {% endblock %}

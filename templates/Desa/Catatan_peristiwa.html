@@ -1,43 +1,212 @@
-{% extends 'Dashboard_desa.html'%}
+{% extends 'Dashboard_desa.html' %}
+
 {% block content %}
+<style>
+    .form-container {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    .btn-hapus {
+        background: none;
+        border: none;
+        color: red;
+        cursor: pointer;
+    }
+    .btn-hapus:hover {
+        color: darkred;
+    }
+    .badge {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+    .form-container {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .btn-hapus {
+        transition: transform 0.2s;
+    }
+    .btn-hapus:hover {
+        transform: scale(1.1);
+    }
+    .table-hover tbody tr:hover {
+        background-color: rgba(0,123,255,0.05);
+    }
+</style>
 
-            <!-- Catatan Peristiwa -->
-            <div class="d-flex align-items-center justify-content-between mb-4">
-                <h2 class="h4 fw-bold mb-0">Catatan Peristiwa</h2>
-                <div class="d-flex align-items-center gap-4">
-                    <div class="d-flex align-items-center position-relative">
-                        <i class="bi bi-search position-absolute" style="left: 10px; color: #6c757d;"></i>
-                        <input type="text" class="form-control ps-5" placeholder="Cari nama..."
-                            style="width: 200px; border-radius: 8px; height: 38px;">
-                    </div>
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <h2 class="h4 fw-bold mb-0" style="color: var(--primary-color);">
+        <i class="bi bi-journal-bookmark-fill"></i> Catatan Peristiwa
+    </h2>
+</div>
 
-                </div>
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                <i class="bi bi-{% if category == 'success' %}check-circle{% else %}exclamation-triangle{% endif %}"></i>
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="card-modern card mb-4">
-                <div class="card-header bg-transparent border-0 pt-3 pb-0">
-                    <h6 class="fw-semibold mb-0">Aktivitas Terbaru</h6>
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                <th scope="col">Aksi </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td><button type="btn" class="btn btn-danger">hapus</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<!-- Form Pindah Dusun -->
+<div class="form-container">
+    <h5 class="fw-bold mb-3" style="color: var(--primary-color);">
+        <i class="bi bi-arrow-left-right"></i> Form Pindah Dusun
+    </h5>
+    
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Pilih Penduduk</label>
+                <select class="form-select" name="id_penduduk" required>
+                    <option value="">-- Pilih Penduduk --</option>
+                    {% for p in penduduk_list %}
+                    <option value="{{ p.id_penduduk }}">{{ p.nama }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            {% endblock %}
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Pindah ke Dusun</label>
+                <select class="form-select" name="dusun_tujuan" required>
+                    <option value="">-- Pilih Dusun Tujuan --</option>
+                    {% for d in dusun_list %}
+                    <option value="{{ d.nama }}">{{ d.nama }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label class="form-label">Alasan Pindah</label>
+                <textarea class="form-control" name="alasan" rows="2" 
+                          placeholder="Masukkan alasan pindah..." required></textarea>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Tanggal Pindah</label>
+                <input type="date" class="form-control" name="tanggal_pindah" required>
+            </div>
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Simpan Perpindahan
+                </button>
+                <button type="reset" class="btn btn-secondary">
+                    <i class="bi bi-arrow-repeat"></i> Reset
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Riwayat Perpindahan -->
+<div class="card-modern card">
+    <div class="card-header bg-transparent border-0 pt-3 pb-0">
+        <div class="d-flex justify-content-between align-items-center">
+            <h6 class="fw-semibold mb-0">
+                <i class="bi bi-clock-history"></i> Riwayat Perpindahan
+            </h6>
+            <div class="d-flex align-items-center position-relative">
+                <i class="bi bi-search position-absolute" style="left: 10px; color: #6c757d;"></i>
+                <input type="text" class="form-control ps-5" id="cariRiwayat" onkeyup="cariRiwayat()" 
+                       placeholder="Cari nama penduduk..." style="width: 250px; border-radius: 8px; height: 38px;">
+            </div>
+        </div>
+    </div>
+    <div class="card-body table-responsive">
+        {% if riwayat %}
+        <table class="table table-striped table-hover" id="tabelRiwayat">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Penduduk</th>
+                    <th>Dusun Asal</th>
+                    <th>Dusun Tujuan</th>
+                    <th>Alasan</th>
+                    <th>Tanggal Pindah</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in riwayat %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ r.nama_penduduk }}</td>
+                    <td>
+                        <span class="badge bg-secondary">{{ r.dusun_asal }}</span>
+                    </td>
+                    <td>
+                        <span class="badge bg-success">{{ r.dusun_tujuan }}</span>
+                    </td>
+                    <td>{{ r.alasan }}</td>
+                    <td>{{ r.tanggal_pindah }}</td>
+                    <td>
+                        <button class="btn-hapus" onclick="hapusRiwayat({{ r.id }})" title="Hapus">
+                            <i class="bi bi-trash3 fs-6"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-info text-center">
+            <i class="bi bi-info-circle"></i> Belum ada riwayat perpindahan
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+// Fungsi pencarian riwayat
+function cariRiwayat() {
+    let input = document.getElementById("cariRiwayat");
+    let filter = input.value.toUpperCase();
+    let table = document.getElementById("tabelRiwayat");
+    
+    if (!table) return;
+    
+    let tr = table.getElementsByTagName("tr");
+    
+    for (let i = 1; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+            let txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+// Fungsi hapus riwayat dengan konfirmasi
+function hapusRiwayat(id) {
+    if (confirm("Apakah Anda yakin ingin menghapus riwayat ini?")) {
+        window.location.href = "/hapus_riwayat/" + id;
+    }
+}
+
+// Auto refresh flash message setelah 3 detik
+setTimeout(function() {
+    let alerts = document.querySelectorAll('.alert');
+    alerts.forEach(function(alert) {
+        alert.style.transition = "opacity 0.5s";
+        alert.style.opacity = "0";
+        setTimeout(function() {
+            alert.remove();
+        }, 500);
+    });
+}, 3000);
+</script>
+
+{% endblock %}

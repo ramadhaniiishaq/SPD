@@ -1,6 +1,5 @@
 {% extends 'Dashboard_desa.html'%}
 {% block content %}
-            <!-- form dusun-->
                 <div class="d-flex align-items-center justify-content-between mb-4">
                 <h2 class="h4 fw-bold mb-0" style="color: var(--primary-color);">Tambah Dusun <i class="bi bi-plus-lg"></i></h2>
                 <div class="d-flex align-items-center gap-4">
@@ -9,24 +8,47 @@
             <div class="d-flex justify-content-center">
             <div class="card-modern card mb-4" style="padding: 20px; width:80vh; height:70vh;" >
                 <div class="card-body" style="width:100%">
-                <form style="color: var(--primary-color); font-size:large; font-weight:bold">
+                {% if error %}
+                <div class="alert alert-danger" role="alert" id="errorAlert">
+                    {{error}}
+                </div>
+                {% endif %}
+                <form style="color: var(--primary-color); font-size:large; font-weight:bold" method="POST" action="{{ url_for('tambah_dusun') }}">
                 <div class="mb-3">
                 <label for="Nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="Nama" placeholder="Masukkan nama" >
+                <input type="text" class="form-control" id="Nama" name="nama" placeholder="Masukkan nama" required>
+                </div>
+                <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" required>
                 </div>
                 <div class="mb-3">
                 <label for="Nama dusun" class="form-label">Nama Dusun</label>
-                <input type="text" class="form-control" id="Nama dusun" placeholder="Masukkan Nama Dusun" >
+                <input type="text" class="form-control" id="Nama dusun" name="nama_dusun" placeholder="Masukkan Nama Dusun" required>
                 </div>
                 <div class="mb-3"> 
                 <label for="Password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="Password" placeholder="Masukkan password" >
+                <input type="password" class="form-control" id="Password" name="password" placeholder="Masukkan password" required>
                 </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-kirim ">Kirim</button>
+                <button type="submit" class="btn btn-kirim ">Kirim</button>
                 </div>
                 </form>
                 </div>
             </div>
             {% endblock %}
+            {% block js %}
+        <script>
+        setTimeout(function() {
+        var errorAlert = document.getElementById('errorAlert');
+        if (errorAlert) {
+            errorAlert.classList.remove('show');
+            errorAlert.classList.add('fade');
+            setTimeout(function() {
+                errorAlert.remove();
+            }, 500);
+        }
+    }, 3000);
+        </script>
+        {% endblock %}

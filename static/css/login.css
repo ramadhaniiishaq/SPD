@@ -35,7 +35,6 @@
             animation: adalah 2s ease-out forwards;
         }
 
-        /* Bagian Kiri */
         .form-section {
             background-color: white;
             padding: 3rem !important;
@@ -86,14 +85,12 @@
             color: white;
         }
 
-        /* Bagian Kanan (Teal Section) */
         .teal-section {
             background-color: var(--teal-color);
             color: white;
             display: flex;
             align-items: center;
             padding: 3rem;
-            /* Membuat potongan miring murni dengan CSS */
             clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 60%);
         }
 
@@ -101,10 +98,9 @@
             font-weight: 800;
             font-size: 3rem;
             line-height: 1.1;
-            margin-left: 15%; /* Memberi jarak dari area miring */
+            margin-left: 15%; 
         }
 
-        /* Garis pemisah tipis */
         .divider {
             width: 80%;
             height: 1px;

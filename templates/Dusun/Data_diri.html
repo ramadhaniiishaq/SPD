@@ -1,45 +1,46 @@
 {% extends 'Dashboard_dusun.html' %}
 {% block content %}
-
-            <!---anggota kk-->
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h2 class="h4 fw-bold mb-0" style="color: var(--primary-color);">Nik</h2>
+                <h2 class="h4 fw-bold mb-0" style="color: var(--primary-color);">{{result.nik}}</h2>
             </div>
-            <div class="card-modern card mb-4 d-flex justify-content-center ">
+            <div class="card-modern card mb-4 d-flex justify-content-center align-item-center ">
                 <div class="row">
                     <div class="col-4 d-flex justify-content-center" style="margin-top: 30px;">
-                        <div class="h5 fw-semibold mb-0">Nama</div>
+                        <div class="h5 fw-semibold mb-0">{{ result.nama }}</div>
                     </div>
                     <div class="col">
                         <div class="card-body">
                     <table class="table">
                         <tr>
-                            <th style="width: 30%;">Nama</th>
-                            <td>Mark</td>
+                            <th style="width: 30%;">Nik</th>
+                            <td>{{ result.nik }}</td>
                         </tr>
                         <tr>
-                            <th style="width: 30%;">Nama</th>
-                            <td>Mark</td>
+                            <th style="width: 30%;">Jenis kelamin</th>
+                            <td>{% if result.jk == 'Perempuan' %}
+                                <i class="bi bi-gender-female" style="color: pink;"> </i>perempuan
+                                {% elif result.jk == 'Laki-laki' %}
+                                <i class="bi bi-gender-male" style="color: blue;"> </i>laki-laki
+                                {% else %}
+                                tidak diketahui
+                                {% endif %}
+                            </td>
                         </tr>
                         <tr>
-                            <th style="width: 30%;">Nama</th>
-                            <td>Mark</td>
+                            <th style="width: 30%;">tempat lahir</th>
+                            <td>{{ result.tempat_lahir }}</td>
                         </tr>
                         <tr>
-                            <th style="width: 30%;">Nama</th>
-                            <td>Mark</td>
+                            <th style="width: 30%;">Tanggal lahir</th>
+                            <td>{{ result.tanggal_lahir }}</td>
                         </tr>
                         <tr>
-                            <th style="width: 30%;">Nama</th>
-                            <td>Mark</td>
+                            <th style="width: 30%;">status hubungan</th>
+                            <td>{{ result.status_hubungan }}</td>
                         </tr>
                         <tr>
-                            <th style="width: 30%;">Nama</th>
-                            <td>Mark</td>
-                        </tr>
-                        <tr>
-                            <th style="width: 30%;">Nama</th>
-                            <td>Mark</td>
+                            <th style="width: 30%;">Agama</th>
+                            <td>{{ result.agama }}</td>
                         </tr>
                     </table>
                 </div>
